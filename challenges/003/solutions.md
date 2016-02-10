@@ -6,3 +6,13 @@ Source: [Project Euler](https://projecteuler.net/problem=31)
 
 
 ---
+
+```erlang
+coins(0, _) -> 1;
+coins(_, []) -> 0;
+coins(Val, _) when Val < 0 -> 0;
+coins(Val, [H|T]) -> coins(Val-H, [H|T]) + coins(Val, T).
+```
+From: Andreas | Language: Erlang
+
+---
