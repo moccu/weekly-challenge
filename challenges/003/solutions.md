@@ -90,3 +90,20 @@ int main(void) {
 From: Stephan | Language: C
 
 ---
+
+```javascript
+function combine(list, upTo) {
+	if (upTo === 0) {
+		return 1;
+	} else if (upTo < 0 || list.length === 0) {
+		return 0;
+	} else {
+		return combine(list, upTo - list[0]) + combine(list.slice(1), upTo);
+	}
+}
+
+combine([200, 100, 50, 20, 10, 5, 2, 1], 200);
+```
+From: Norman | Language: JavaScript
+
+---
