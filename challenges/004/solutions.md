@@ -44,6 +44,8 @@ From: Ute | Language: Python
 ---
 
 ```swift
+import Foundation
+
 extension Array {
     mutating func popFirst() -> Element {
         let firstChild = self.first!
@@ -71,13 +73,15 @@ func calcMatches(var teams1: [String], var teams2: [String]) -> [[String]] {
     }
 
     if (!(teams1 + teams2).elementsEqual(teams)) {
-        matchPlan.append(calcMatches(teams1, teams2: teams2))
+        calcMatches(teams1, teams2: teams2)
     }
+    
+    matchPlan.append(matchDay)
     
     return matchDay
 }
 
-matchPlan.append(calcMatches(Array(teams.prefix(teamsCount)), teams2: Array(teams.suffix(teamsCount))))
+calcMatches(Array(teams.prefix(teamsCount)), teams2: Array(teams.suffix(teamsCount)))
 
 for (index,day) in matchPlan.enumerate() {
     print("Spieltag: \(index+1)")
