@@ -44,11 +44,18 @@ From: Ute | Language: Python
 ---
 
 ```swift
+extension Array {
+    mutating func popFirst() -> Element {
+        let firstChild = self.first!
+        self.removeFirst()
+        return firstChild
+    }
+}
+
 let teams: [String] = [
-    "Hertha BSC Berlin", "Borussia Dortmund", "FC Augsburg", "FC Bayern München", "Hamburger SV",
-    "Werder Bremen", "1. FC Mainz 05", "Schalke 04", "Darmstadt", "Bayer 04 Leverkusen",
-    "Hannover 96", "VfB Stuttgart", "1899 Hoffenheim", "VfL Wolfsburg", "FC Ingolstadt",
-    "1. FC Köln", "Eintracht Frankfurt", "Borussia Mönchengladbach"]
+    "Hertha BSC", "1. FSV Mainz 05", "Borussia Mönchengladbach", "FC Augsburg", "Hannover 96", "Bayer 04 Leverkusen",
+    "FC Ingolstadt 04", "SV Werder Bremen", "Borussia Dortmund", "TSG 1899 Hoffenheim", "1. FC Köln", "Hamburger SV",
+    "Eintracht Frankfurt", "FC Bayern München", "VfB Stuttgart", "VfL Wolfsburg", "FC Schalke 04", "SV Darmstadt 98"]
 let teamsCount: Int = teams.count/2
 var matchPlan: [[[String]]] = []
 
@@ -56,8 +63,7 @@ func calcMatches(var teams1: [String], var teams2: [String]) -> [[String]] {
     var matchDay: [[String]] = []
 
     teams2.append(teams1.popLast()!)
-    teams1.insert(teams2.first!, atIndex: 1)
-    teams2.removeFirst()
+    teams1.insert(teams2.popFirst(), atIndex: 1)
 
     for i in 0...teams1.count-1 {
         matchDay.append([teams1[i], teams2[i]])
@@ -71,5 +77,13 @@ func calcMatches(var teams1: [String], var teams2: [String]) -> [[String]] {
 }
 
 matchPlan.append(calcMatches(Array(teams.prefix(teamsCount)), teams2: Array(teams.suffix(teamsCount))))
+
+for (index,day) in matchPlan.enumerate() {
+    print("Spieltag: \(index+1)")
+    for match in day {
+        print("\(match[0]) - \(match[1])")
+    }
+    print("\n")
+}
 ```
 From: Martin | Language: Swift
