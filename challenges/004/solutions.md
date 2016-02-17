@@ -92,3 +92,23 @@ for (index,day) in matchPlan.enumerate() {
 }
 ```
 From: Martin | Language: Swift
+
+---
+
+```python
+def build_tournament(teams):
+    if len(teams) % 2 != 0:
+        teams.append('-')
+
+    num_teams = len(teams)
+    rounds = [
+        [teams[0]] + teams[num_teams - day:] + teams[1:num_teams - day]
+        for day in range(0, num_teams - 1)
+    ]
+
+    for num, teams in enumerate(rounds, 1):
+        print('\nRound {0}'.format(num))
+        while teams:
+            print('- {0} vs {1}'.format(teams.pop(0), teams.pop(-1)))
+```
+From: Stephan | Language: Python
