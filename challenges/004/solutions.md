@@ -72,4 +72,4 @@ func calcMatches(var teams1: [String], var teams2: [String]) -> [[String]] {
 
 matchPlan.append(calcMatches(Array(teams.prefix(teamsCount)), teams2: Array(teams.suffix(teamsCount))))
 ```
-from Martin | Language: Swift
+From: Martin | Language: Swift
