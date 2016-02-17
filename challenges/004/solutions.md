@@ -55,7 +55,7 @@ var matchPlan: [[[String]]] = []
 func calcMatches(var teams1: [String], var teams2: [String]) -> [[String]] {
     var matchDay: [[String]] = []
 
-    teams2.insert(teams1.popLast()!, atIndex: teams2.count)
+    teams2.append(teams1.popLast()!)
     teams1.insert(teams2.first!, atIndex: 1)
     teams2.removeFirst()
 
