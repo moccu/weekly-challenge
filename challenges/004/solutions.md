@@ -55,7 +55,8 @@ extension Array {
 let teams: [String] = [
     "Hertha BSC", "1. FSV Mainz 05", "Borussia Mönchengladbach", "FC Augsburg", "Hannover 96", "Bayer 04 Leverkusen",
     "FC Ingolstadt 04", "SV Werder Bremen", "Borussia Dortmund", "TSG 1899 Hoffenheim", "1. FC Köln", "Hamburger SV",
-    "Eintracht Frankfurt", "FC Bayern München", "VfB Stuttgart", "VfL Wolfsburg", "FC Schalke 04", "SV Darmstadt 98"]
+    "Eintracht Frankfurt", "FC Bayern München", "VfB Stuttgart", "VfL Wolfsburg", "FC Schalke 04", "SV Darmstadt 98",
+]
 let teamsCount: Int = teams.count/2
 var matchPlan: [[[String]]] = []
 
