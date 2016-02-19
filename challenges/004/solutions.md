@@ -120,3 +120,27 @@ From: Stephan | Language: Python
 let teams = [1,2,3,4,5,6] in map (\(a,b) -> zip a (reverse b)) . drop 1 . foldr (\x acc -> (splitAt (div (length x) 2) ((head x):(take 5 . drop (1 + length acc) . cycle $ drop 1 x))):acc) [] $ replicate (length teams) teams
 ```
 From: Andreas | Language: Haskell
+
+---
+
+```
+function tournament(teams) {
+    var
+        games = []
+    ;
+
+    for (var i = 0; i < teams.length; i++) {
+        for (var j = 0; j < teams.length; j++) {
+            if (teams[j] == teams[i]) {
+                console.log('Do not play against yourself you stupid');
+            } else {
+                games.push(teams[j] + teams[i]);
+            }
+        }
+    }
+
+    console.log("Games: " + games);
+    console.log("Amount of nice games " + games.length);
+}
+```
+From Dimitri | Language: Javascript
