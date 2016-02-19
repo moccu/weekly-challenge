@@ -112,3 +112,11 @@ def build_tournament(teams):
             print('- {0} vs {1}'.format(teams.pop(0), teams.pop(-1)))
 ```
 From: Stephan | Language: Python
+
+---
+
+```
+-- Who said only Perl is good for unreadable one-liners?!
+let teams = [1,2,3,4,5,6] in map (\(a,b) -> zip a (reverse b)) . drop 1 . foldr (\x acc -> (splitAt (div (length x) 2) ((head x):(take 5 . drop (1 + length acc) . cycle $ drop 1 x))):acc) [] $ replicate (length teams) teams
+```
+From: Andreas | Language: Haskell
