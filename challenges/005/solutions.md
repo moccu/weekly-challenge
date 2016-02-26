@@ -49,3 +49,76 @@ body {
 From: Jannik | Language: scss
 
 ---
+``` cobol
+       identification division.
+       program-id. BUBBLSORT.
+       data division.
+       working-storage section.
+      * Field level 88 is magic: makes easier qual tests, if hasChanged
+      * vs. if changed-flag is equal to "Y"
+       01 changed          pic x.
+           88 hasChanged        value 'Y'.
+           88 hasNotChanged     value 'N'.
+
+      * Stores acutal array to sort, max number is 99999 (5 digits).
+      * Handles max. 32 items.
+       01 items.
+           02 itemLength    pic 9(2).
+           02 itemPosition  pic 9(2).
+           02 item          pic 9(5) occurs 32 times.
+
+      * Later needed to store value when swapping.
+       01 tempItem          pic 9(5).
+
+      * Remember the current positionition while looping through array.
+       01 currentPosition   pic 9(2).
+
+       procedure division.
+       main.
+      * place the values to sort into itemArray
+           move 10 to itemLength 
+           move 23 to item (1)
+           move 74 to item (2)
+           move 34 to item (3)
+           move 67 to item (4)
+           move 12 to item (5)
+           move 18 to item (6)
+           move 10 to item (7)
+           move 99 to item (8)
+           move 19 to item (9)
+           move 13 to item (10)
+
+           perform bubble-sort
+
+           perform varying itemPosition from 1 by 1
+               until itemPosition > itemLength
+               display itemPosition ') ' item(itemPosition)
+           end-perform
+           stop run.
+
+       bubble-sort.
+      * Remember array length as current currentPositionition.
+           move itemLength to currentPosition
+
+      * Loop through array until we have nothing swapped
+           perform with test after until hasNotChanged
+      * Nothing changed until now..
+               set hasNotChanged to true
+               subtract 1 from currentPosition
+      * Loop through remaining unsorted items.
+               perform varying itemPosition from 1 by 1
+                   until itemPosition > currentPosition
+      * Check if current item is greater than next item.
+                   if item(itemPosition) > item(itemPosition + 1)
+                       move item(itemPosition) to tempItem
+                       move item(itemPosition + 1) to item(itemPosition)
+                       move tempItem to item(itemPosition + 1)
+                       set hasChanged to true
+                   end-if
+               end-perform
+           end-perform
+           .
+```
+From: Stephan | Language: Cobol
+
+---
