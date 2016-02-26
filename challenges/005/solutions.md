@@ -139,3 +139,29 @@ while running:
 From: Ben | Language: python
 
 ---
+
+```Processing
+int [] array = { 10, 8, 2, 1, 3, 4, 7, 9, 8, 5, 6};
+boolean isSorted = false;
+int holder;
+
+void draw() {
+	if (!isSorted) {
+		isSorted = true;
+		
+		for (int i=0; i < array.length - 1; i++) {
+		  if (array[i] > array[i+1]) {
+			holder = array[i];
+			array[i] = array[i+1];
+			array[i+1] = holder;
+			isSorted = false;
+		  }
+		}
+	} else {
+		noLoop();
+	}
+}
+```
+From: Dimitri | Language: processing
+
+---
