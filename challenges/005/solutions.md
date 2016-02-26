@@ -76,7 +76,7 @@ From: Jannik | Language: scss
        procedure division.
        main.
       * place the values to sort into itemArray
-           move 10 to itemLength 
+           move 10 to itemLength
            move 23 to item (1)
            move 74 to item (2)
            move 34 to item (3)
@@ -120,5 +120,22 @@ From: Jannik | Language: scss
            .
 ```
 From: Stephan | Language: Cobol
+
+---
+```python
+bubbles = [3, 6, 1, 5, 23, 33, 3, 3, 3, 11, 9, 46, 78, 21]
+running = True
+
+while running:
+    running = False
+    for i, item in enumerate(bubbles, start=1):
+        if i == len(bubbles):
+            break
+
+        if item > bubbles[i]:
+            bubbles[i - 1], bubbles[i] = bubbles[i], item
+            running = True
+```
+From: Ben | Language: python
 
 ---
