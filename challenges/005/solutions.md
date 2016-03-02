@@ -165,3 +165,16 @@ void draw() {
 From: Dimitri | Language: processing
 
 ---
+
+```haskell
+bubbleSort :: Ord a => [a] -> [a]
+bubbleSort list = inner list [] False
+    where
+        inner [] sorted False = reverse sorted
+        inner [] sorted True = inner (reverse sorted) [] False
+        inner (x:xs) [] swapped = inner xs [x] swapped
+        inner (x:xs) (y:ys) swapped
+            | x < y = inner xs (y:x:ys) True
+            | otherwise = inner xs (x:y:ys) swapped
+```
+From: Andreas | Language: Haskell
