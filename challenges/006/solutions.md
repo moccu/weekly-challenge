@@ -30,3 +30,15 @@ Find the maximum total from top to bottom of the triangle below:
 </p>
 
 Source: [Project Euler](https://projecteuler.net/problem=18)
+
+---
+
+```haskell
+pathSum :: [[Int]] -> Int
+pathSum [[x]] = x
+pathSum (xs:ys:tail) = pathSum ((mergeRows xs ys):tail)
+    where
+        mergeRows _ [] = []
+        mergeRows (x1:x2:xs) (y:ys) = (y + max x1 x2):(mergeRows (x2:xs) ys)
+```
+From: Andreas | Language: Haskell
