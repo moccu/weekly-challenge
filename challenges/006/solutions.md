@@ -42,3 +42,21 @@ pathSum (xs:ys:tail) = pathSum ((mergeRows xs ys):tail)
         mergeRows (x1:x2:xs) (y:ys) = (y + max x1 x2):(mergeRows (x2:xs) ys)
 ```
 From: Andreas | Language: Haskell
+
+---
+
+```python
+def max_path_sum(pyramid):
+    path_sum = pyramid[0][0]
+    a = 0
+    for i in pyramid[1:]:
+        if i[a] > i[a + 1]:
+            path_sum += i[a]
+        else:
+            path_sum += i[a + 1]
+            a += 1
+    print(path_sum)
+```
+From: Ute | Language: Python
+
+---
