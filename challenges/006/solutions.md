@@ -160,3 +160,31 @@ root.getTotalPath(); // -> [75, 64, 82, 87, 82, 75, 73, 28, 83, 32, 91, 78, 58, 
 From: Norman | Language: JavaScript
 
 ---
+
+```swift
+let numbers: [[Int]] = [[5], [7, 6], [1, 15, 8], [7, 22, 50, 2]]
+var result: [Int] = []
+
+func counter(var list: [[Int]]) {
+    let tempDownRow: [Int] = list.popLast()!
+    let tempUpRow: [Int] = list.popLast()!
+    var tempRow: [Int] = []
+    
+    for (i, num) in tempUpRow.enumerate() {
+        tempRow.append(max(num + tempDownRow[i], num + tempDownRow[i+1]))
+    }
+    
+    list.append(tempRow)
+
+    if (list.count > 1) {
+        counter(list)
+    } else {
+        print(list[0][0])
+    }
+}
+
+counter(numbers)
+```
+From: Martin | Language: Swift
+
+---
