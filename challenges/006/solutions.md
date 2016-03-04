@@ -40,6 +40,8 @@ pathSum (xs:ys:tail) = pathSum ((mergeRows xs ys):tail)
     where
         mergeRows _ [] = []
         mergeRows (x1:x2:xs) (y:ys) = (y + max x1 x2):(mergeRows (x2:xs) ys)
+        
+main = (pathSum . reverse . map (map read . words) . lines) <$> readFile "tree.txt"
 ```
 From: Andreas | Language: Haskell
 
