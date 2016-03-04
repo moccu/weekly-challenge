@@ -47,15 +47,25 @@ From: Andreas | Language: Haskell
 
 ```python
 def max_path_sum(pyramid):
-    path_sum = pyramid[0][0]
-    a = 0
-    for i in pyramid[1:]:
-        if i[a] > i[a + 1]:
-            path_sum += i[a]
-        else:
-            path_sum += i[a + 1]
-            a += 1
-    print(path_sum)
+
+    for row in range(len(pyramid) - 1):
+
+        bottom = len(pyramid) - 1
+        new_bottom_row = []
+
+        for i, j in enumerate(pyramid[bottom - 1]):
+
+            a = j + pyramid[bottom][i]
+            b = j + pyramid[bottom][i + 1]
+            if a > b:
+                new_bottom_row.append(a)
+            else:
+                new_bottom_row.append(b)
+
+            pyramid = pyramid[:-2]
+            pyramid.append(new_bottom_row)
+
+    print(pyramid[0][0])
 ```
 From: Ute | Language: Python
 
