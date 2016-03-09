@@ -5,3 +5,10 @@ Match dates in YYYY/MM/DD HH:MM(:SS) format with a regex. YYYY should be a year 
 You can find interactive test cases at [Regex Tuesday](http://callumacrae.github.io/regex-tuesday/challenge3.html).
 
 Source: [Regex Tuesday](http://callumacrae.github.io/regex-tuesday/challenge3.html)
+
+---
+
+```javascript
+(1\d{3}|20(0[1-9]|1[0-2]))\/(0[1-9]|1[0-2])\/(0[0-9]|1[0-9]|2[0-9]|30)\s(0[1-9]|1[0-2])\:([0-5]\d)\:?([0-5]\d)?
+```
+From: Dimitri
