@@ -12,3 +12,10 @@ Source: [Regex Tuesday](http://callumacrae.github.io/regex-tuesday/challenge3.ht
 (1\d{3}|20(0[1-9]|1[0-2]))\/(0[1-9]|1[0-2])\/(0[0-9]|1[0-9]|2[0-9]|30)\s(0[1-9]|1[0-2])\:([0-5]\d)\:?([0-5]\d)?
 ```
 From: Dimitri
+
+---
+
+```javascript
+^(1\d{3}|20(0\d|1[0-2]))\/(0[1-9]|1[0-2])\/(0[1-9]|[12]\d|30)\s([01]\d|2[0-3])\:([0-5]\d)(\:([0-5]\d))?$
+````
+From: Martin | Language: JavaScript
