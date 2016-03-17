@@ -95,3 +95,132 @@ if __name__ == '__main__':
     print('{0}: {1}'.format(names, section.dist))
 ```
 From: Andreas | Language: Python
+
+---
+
+*The data strucure*
+
+```JavaScript
+// An instance of this class describes a directional
+// connection between two nodes by a distance
+// between them.
+function Path(node, distance) {
+	this.node = node;
+	this.distance = distance;
+}
+
+//  An instance of this class is a node. A node can be
+// connected with other nodes by pathes.
+function Node(name) {
+	this.name = name;
+	this.neighbours = [];
+	this.reset();
+}
+
+Node.prototype.addNeighbour = function(node, distance) {
+	this.neighbours.push(new Path(node, distance));
+};
+
+Node.prototype.reset = function() {
+	this.previous = null;
+	this.total = Number.MAX_VALUE;
+};
+
+Node.prototype.toString = function() {
+	return this.name;
+};
+```
+
+*The algorithm*
+
+```JavaScript
+function calculate(start, end, nodes) {
+	// Clone nodes to not touch given nodes list...
+	nodes = nodes.concat();
+
+	// Reset all nodes, start node has a total distance of 0...
+	nodes.forEach(function(node) { node.reset(); });
+	start.total = 0;
+
+	// As long as nodes are available...
+	while (nodes.length > 0) {
+		var current = null;
+		var index = 0;
+
+		// Get smallest node in nodes...
+		nodes.forEach(function(node, at) {
+			current = !current ? node : node.value < current.value ? node : current;
+			index = current === node ? at : index;
+		});
+
+		// Remove smallest node from nodes...
+		nodes.splice(index, 1);
+
+		// Calculate distance to neighbours...
+		current.neighbours.forEach(function(path) {
+			var neighbour = path.node;
+
+			// when in list of nodes...
+			if (nodes.indexOf(neighbour) > -1) {
+				var distance = current.total + path.distance;
+
+				if (distance < neighbour.total) {
+					neighbour.previous = current;
+					neighbour.total = distance;
+				}
+			}
+		});
+	}
+
+	// Build way from end to start node....
+	var way = [end];
+	end = end.previous;
+	while (end) {
+		way.unshift(end);
+		end = end.previous;
+	}
+
+	return way;
+}
+```
+
+*Usage*
+
+```JavaScript
+// Create nodes...
+var
+	Augsburg = new Node('Augsburg'),
+	Erfurt = new Node('Erfurt'),
+	Frankfurt = new Node('Frankfurt'),
+	Karlsruhe = new Node('Karlsruhe'),
+	Kassel = new Node('Kassel'),
+	Mannheim = new Node('Mannheim'),
+	Munich = new Node('Munich'),
+	Nuremberg = new Node('Nuremberg'),
+	Wuerzburg = new Node('Wuerzburg'),
+	Stuttgart = new Node('Stuttgart'),
+	
+	// Store all cities in a list
+	cities = [
+		Augsburg, Erfurt, Frankfurt, Karlsruhe, Kassel,
+		Mannheim, Munich, Nuremberg, Stuttgart, Wuerzburg
+	]
+;
+
+// Connect nodes...
+Augsburg.addNeighbour(Karlsruhe, 250);
+Augsburg.addNeighbour(Munich, 84);
+Erfurt.addNeighbour(Wuerzburg, 186);
+Frankfurt.addNeighbour(Kassel, 173);
+Frankfurt.addNeighbour(Mannheim, 85);
+Frankfurt.addNeighbour(Wuerzburg, 217);
+Karlsruhe.addNeighbour(Mannheim, 80);
+Kassel.addNeighbour(Munich, 502);
+Munich.addNeighbour(Nuremberg, 167);
+Nuremberg.addNeighbour(Stuttgart, 183);
+Nuremberg.addNeighbour(Wuerzburg, 103);
+
+// Calculate the path from frankfurt to munich
+calculate(Frankfurt, Munich, cities).join(' -> '); // "Frankfurt -> Kassel -> Munich"
+```
+From: Norman | Language: :heart:-script
