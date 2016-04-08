@@ -51,3 +51,50 @@ In JSON this tree could be represented like this:
 Write a function that creates a new binary tree from an inital key value pair and another function that inserts new values into an existing binary tree.
 
 ---
+
+```python
+
+class Node:
+
+    def __init__(self, key, data):
+        self.key = key
+        self.data = data
+        self.left_child = None
+        self.right_child = None
+
+    def insert(self, key, data):
+        if self.key == key:
+            return False
+        elif self.key > key:
+            if self.left_child:
+                return self.left_child.insert(key, data)
+            else:
+                self.left_child = Node(key, data)
+                return True
+        else:
+            if self.right_child:
+                return self.right_child.insert(key, data)
+            else:
+                self.right_child = Node(key, data)
+                return True
+
+class Tree:
+
+    def __init__(self):
+        self.root = None
+
+    def insert(self, key, data):
+        if self.root:
+            return self.root.insert(key, data)
+        else:
+            self.root = Node(key, data)
+            return True
+
+my_tree = Tree()
+
+my_tree.insert(4, 'd')
+
+```
+From: Ute | Language: Python
+
+---
