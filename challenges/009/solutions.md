@@ -98,3 +98,74 @@ my_tree.insert(4, 'd')
 From: Ute | Language: Python
 
 ---
+
+```go
+package main
+
+import (
+	"errors"
+	"fmt"
+	"encoding/json"
+)
+
+
+type Node struct {
+	Key int `json:"key"`
+	Payload interface{} `json:"payload"`
+	Left *Node `json:"left"`
+	Right *Node `json:"right"`
+}
+
+
+func (node *Node) String() string {
+	return fmt.Sprintf(
+		"<Node key:%d (%s) left:%s/right:%s>",
+		node.Key,
+		node.Payload,
+		node.Left,
+		node.Right)
+}
+
+
+func (node *Node) Insert(key int, payload interface{}) (*Node, error) {
+	if (key == node.Key) {
+		return nil, errors.New("New key equals node key.")
+	}
+
+	if (key < node.Key) {
+		if (node.Left != nil) {
+			return node.Left.Insert(key, payload)
+		} else {
+			node.Left = NewNode(key, payload)
+			return node.Left, nil
+		}
+	}
+
+	if (node.Right != nil) {
+		return node.Right.Insert(key, payload)
+	} else {
+		node.Right = NewNode(key, payload)
+		return node.Right, nil
+	}
+}
+
+
+func NewNode(key int, payload interface{}) *Node {
+	return &Node{Key: key, Payload: payload}
+}
+
+
+func main() {
+	tree := NewNode(4, "d")
+
+	tree.Insert(2, "b")
+	tree.Insert(1, "a")
+	tree.Insert(3, "c")
+	tree.Insert(5, "e")
+	tree.Insert(6, "f")
+
+	data, _ := json.Marshal(tree)
+	fmt.Println(string(data[:]))
+}
+```
+From: steph | Language: Go
