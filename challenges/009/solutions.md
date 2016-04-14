@@ -169,3 +169,51 @@ func main() {
 }
 ```
 From: steph | Language: Go
+
+---
+```javascript
+function BinaryTree(data) {
+	this._root = null;
+}
+
+BinaryTree.prototype = {
+	add: function(data) {
+		var
+			node = {
+				"key": data.key,
+				"left": null,
+				"right": null
+			},
+			current
+		;
+
+		if (this._root === null) {
+			this._root = node;
+		} else {
+			current = this._root;
+
+			while(true){
+				if (data.key < current.key){
+					if (current.left === null){
+						current.left = node;
+						break;
+					} else {
+						current = current.left;
+					}
+				} else if (data.key > current.key){
+					if (current.right === null){
+						current.right = node;
+						break;
+					} else {
+						current = current.right;
+					}
+				} else {
+					break;
+				}
+			}
+		}
+	}
+}
+```
+From: Dimitri | Language: Javascript
+---
