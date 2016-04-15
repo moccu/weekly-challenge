@@ -218,3 +218,16 @@ BinaryTree.prototype = {
 From: Dimitri | Language: Javascript
 
 ---
+
+```haskell
+data Tree a = EmptyNode | Node String a (Tree a) (Tree a) deriving (Show)
+
+insert :: Tree a -> String -> a -> Tree a
+insert EmptyNode key value = Node key value EmptyNode EmptyNode
+insert (Node k v left right) key value
+	| key == k = Node k value left right
+	| key <  k = Node k v (insert left key value) right
+	| key >  k = Node k v left (insert right key value)
+```
+From: Andreas | Language: Haskell
+
