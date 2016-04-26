@@ -100,3 +100,9 @@ lookup key (Node k v left right)
     | key >  k = lookup key right
 ```
 From: Andreas | Language: Haskell
+
+---
+```go
+see subdirectory.
+```
+From: steph | Language: Go
