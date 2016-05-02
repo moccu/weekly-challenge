@@ -280,7 +280,7 @@ BinaryTree.prototype = {
 		}
 	},
 
-	find: function(value) {
+	find: function(data) {
 		var
 			found,
 			current = this._root
@@ -289,16 +289,16 @@ BinaryTree.prototype = {
 		while(!found) {
 			console.log(current);
 			if (current === null) {
-				console.log("Nope. " + value.key + " jibbets nüscht");
+				console.log("Nope. " + data.key + " jibbets nüscht");
 				break;
 			}
 
-			if (value.key < current.key) {
+			if (data < current.key) {
 				current = current.left;
-			} else if (value.key > current.key) {
+			} else if (data.key > current.key) {
 				current = current.right;
 			} else {
-				console.log('righty right, hab die ' + value.key + ' jefunden');
+				console.log('righty right, hab die ' + data.key + ' jefunden');
 				found = true;
 			}
 		}
