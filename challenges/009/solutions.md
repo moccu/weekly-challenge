@@ -231,3 +231,90 @@ insert (Node k v left right) key value
 ```
 From: Andreas | Language: Haskell
 
+---
+
+SEARCH TREE 
+
+---
+
+```javascript
+function BinaryTree(data) {
+	this._root = null;
+}
+
+BinaryTree.prototype = {
+	add: function(data) {
+		var
+			node = {
+				"key": data.key,
+				"left": null,
+				"right": null
+			},
+			current
+		;
+
+		if (this._root === null) {
+			this._root = node;
+		} else {
+			current = this._root;
+
+			while(true){
+				if (data.key < current.key){
+					if (current.left === null){
+						current.left = node;
+						break;
+					} else {
+						current = current.left;
+					}
+				} else if (data.key > current.key){
+					if (current.right === null){
+						current.right = node;
+						break;
+					} else {
+						current = current.right;
+					}
+				} else {
+					break;
+				}
+			}
+		}
+	},
+
+	find: function(value) {
+		var
+			found,
+			current = this._root
+		;
+
+		while(!found) {
+			console.log(current);
+			if (current === null) {
+				console.log("Nope. " + value.key + " jibbets nüscht");
+				break;
+			}
+
+			if (value.key < current.key) {
+				current = current.left;
+			} else if (value.key > current.key) {
+				current = current.right;
+			} else {
+				console.log('righty right, hab die ' + value.key + ' jefunden');
+				found = true;
+			}
+		}
+
+		return found;
+	}
+}
+```
+Usage:
+```javascript
+var tree = new BinaryTree();
+tree.add({"key": "5", "value": "d"});
+tree.find({"key": "5"});
+```
+
+From Dimitri | Language: Javascript
+
+---
+
