@@ -106,3 +106,64 @@ From: Andreas | Language: Haskell
 see subdirectory.
 ```
 From: steph | Language: Go
+
+---
+
+```python
+
+class Node:
+    key = None
+    data = None
+    left_child = None
+    right_child = None
+
+    def __init__(self, key, value):
+        self.key = key
+        self.value = value
+
+    def insert(self, key, value):
+        if self.key == key:
+            return False
+
+        if self.key > key:
+            if self.left_child:
+                return self.left_child.insert(key, value)
+            else:
+                self.left_child = Node(key, value)
+                return True
+        else:
+            if self.right_child:
+                return self.right_child.insert(key, value)
+            else:
+                self.right_child = Node(key, value)
+                return True
+
+    def find(self, key):
+        if self.key == key:
+            return self
+
+        if self.left_child and self.key > key:
+            return self.left_child.find(key)
+
+        if self.right_child and self.key < key:
+            return self.right_child.find(key)
+
+        return None
+
+
+class Tree:
+    root = None
+
+    def __init__(self, root_key, root_value):
+        self.root = Node(root_key, root_value)
+
+    def insert(self, key, value):
+        return self.root.insert(key, value)
+
+    def find(self, key):
+        return self.root.find(key)
+
+```
+From: Ben | Language: Python
+
+---
