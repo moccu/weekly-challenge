@@ -1,6 +1,7 @@
 module Tree ( Tree(..)
             , insert
             , fromList
+            , toList
             , lookup
             ) where
 
@@ -19,6 +20,10 @@ insert key value (Node k v left right)
 
 fromList :: Ord k => [(k,a)] -> Tree k a
 fromList = foldr (\ (k,v) -> insert k v) EmptyNode
+
+toList :: Tree k a -> [(k, a)]
+toList EmptyNode = []
+toList (Node k v left right) = toList left ++ [(k, v)] ++ toList right
 
 lookup :: Ord k => k -> Tree k a -> Maybe a
 lookup _ EmptyNode = Nothing
