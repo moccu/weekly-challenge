@@ -23,4 +23,6 @@ func main() {
 	fmt.Println(tree.LookupNode(2))
 	fmt.Println(tree.LookupNode(3))
 	fmt.Println(tree.LookupNode(8))
+
+	fmt.Println(tree.Traverse())
 }
