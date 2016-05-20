@@ -79,3 +79,20 @@ func (node *Node) Lookup(key int) (interface{}, error) {
 
 	return node.Payload, nil
 }
+
+
+func (node *Node) Traverse() ([]Node) {
+	nodes := make([]Node, 0)
+
+	if (node.Left != nil) {
+		nodes = append(nodes, node.Left.Traverse()...)
+	}
+
+	nodes = append(nodes, *node)
+
+	if (node.Right != nil) {
+		nodes = append(nodes, node.Right.Traverse()...)
+	}
+
+	return nodes
+}
