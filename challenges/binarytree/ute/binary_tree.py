@@ -39,7 +39,6 @@ class Node:
                 return 'Node with this key does not exist'
 
     def create_key_list(self):
-
         if self.left_child:
             self.left_child.create_key_list()
 
