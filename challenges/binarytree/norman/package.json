@@ -1,0 +1,12 @@
+{
+  "name": "binarytree-norman",
+  "version": "1.0.0",
+  "private": true,
+  "main": "index.js",
+  "scripts": {
+    "test": "node_modules/.bin/nodeunit tests/node.js tests/tree.js"
+  },
+  "devDependencies": {
+    "nodeunit": "^0.9.1"
+  }
+}
