@@ -1,10 +1,9 @@
-module.exports = Tree;
-
-
 var
 	Node = require('./Node')
 ;
 
+
+module.exports = Tree;
 
 function Tree() {
 	this.root = null;
