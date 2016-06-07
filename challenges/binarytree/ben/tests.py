@@ -53,29 +53,29 @@ class TestNode:
         assert node.right_child.right_child.key == 5
         assert node.right_child.right_child.value == 'right_child_value'
 
-    @pytest.mark.parametrize('node, child_key, child_child_key, search_key', [
+    @pytest.mark.parametrize('node, left_child, right_child, search_key', [
         (Node(4, 'a'), 2, 5, 4),
         (Node(4, 'a'), 2, 5, 2),
         (Node(4, 'a'), 2, 5, 5),
     ])
-    def test_find_key(self, node, child_key, child_child_key, search_key):
-        node.insert(child_key, 'b')
-        node.insert(child_child_key, 'c')
+    def test_find_key(self, node, left_child, right_child, search_key):
+        node.insert(left_child, 'b')
+        node.insert(right_child, 'c')
 
         assert node.find(search_key).key == search_key
 
-    @pytest.mark.parametrize('node, child_key, child_child_key, search_key', [
+    @pytest.mark.parametrize('node, left_child, right_child, search_key', [
         (Node(4, 'a'), 2, 5, 6),
         (Node(4, 'a'), 2, 5, 3),
         (Node(4, 'a'), None, None, 6),
         (Node(4, 'a'), None, None, 3),
     ])
-    def test_key_not_in_node(self, node, child_key, child_child_key, search_key):
-        if child_key:
-            node.insert(child_key, 'b')
+    def test_key_not_in_node(self, node, left_child, right_child, search_key):
+        if left_child:
+            node.insert(left_child, 'b')
 
-            if child_child_key:
-                node.insert(child_child_key, 'c')
+        if right_child:
+            node.insert(right_child, 'c')
 
         assert node.find(search_key) is None
 
