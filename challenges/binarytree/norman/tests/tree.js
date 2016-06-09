@@ -1,8 +1,10 @@
 var
+	sinon = require("sinon"),
 	Tree = require('..').Tree
 ;
 
 module.exports = {
+
 	setUp: function(done) {
 		this.tree = new Tree();
 		done();
@@ -19,44 +21,6 @@ module.exports = {
 		test.equal(node, this.tree.root);
 		test.equal(node.key, 10);
 		test.equal(node.value, 'ten');
-		test.done();
-	},
-
-	'should insert node into left subtree': function(test) {
-		var node;
-
-		this.tree.insert(10, 'ten');
-		node = this.tree.insert(5, 'five');
-
-		test.equal(node, this.tree.root.left);
-		test.equal(node.parent, this.tree.root);
-		test.equal(node.key, 5);
-		test.equal(node.value, 'five');
-		test.done();
-	},
-
-	'should insert node into right subtree': function(test) {
-		var node;
-
-		this.tree.insert(10, 'ten');
-		node = this.tree.insert(15, 'fifteen');
-
-		test.equal(node, this.tree.root.right);
-		test.equal(node.parent, this.tree.root);
-		test.equal(node.key, 15);
-		test.equal(node.value, 'fifteen');
-		test.done();
-	},
-
-	'should not insert same key twice': function(test) {
-		var
-			first = this.tree.insert(10, 'ten'),
-			second = this.tree.insert(10, 'ten')
-		;
-
-		test.equal(first, this.tree.root);
-		test.notEqual(first, second);
-		test.equal(second, null);
 		test.done();
 	},
 
